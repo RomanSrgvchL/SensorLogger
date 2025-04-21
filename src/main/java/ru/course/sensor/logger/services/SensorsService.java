@@ -5,6 +5,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.course.sensor.logger.models.Sensor;
 import ru.course.sensor.logger.repositories.SensorsRepository;
 
+import java.util.Optional;
+
 @Service
 @Transactional(readOnly = true)
 public class SensorsService {
@@ -12,6 +14,10 @@ public class SensorsService {
 
     public SensorsService(SensorsRepository sensorsRepository) {
         this.sensorsRepository = sensorsRepository;
+    }
+
+    public Optional<Sensor> findByName(String name) {
+        return sensorsRepository.findByName(name);
     }
 
     @Transactional

@@ -1,5 +1,6 @@
 package ru.course.sensor.logger.dto;
 
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,5 +11,6 @@ import lombok.Setter;
 @NoArgsConstructor
 public class SensorDTO {
     @Size(min = 3, max = 30)
+    @NotNull
     private String name;
 }
