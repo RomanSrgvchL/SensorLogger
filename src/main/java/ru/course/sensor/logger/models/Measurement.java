@@ -1,7 +1,7 @@
 package ru.course.sensor.logger.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,18 +20,21 @@ public class Measurement {
     @Column(name = "id")
     private int id;
 
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "sensor_id", referencedColumnName = "id")
     private Sensor sensor;
 
+    @NotNull
     @Range(min = -100, max = 100)
     @Column(name = "value")
-    private int value;
+    private Double value;
 
+    @NotNull
     @Column(name = "raining")
-    private boolean raining;
+    private Boolean raining;
 
-    @NotEmpty
+    @NotNull
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 }

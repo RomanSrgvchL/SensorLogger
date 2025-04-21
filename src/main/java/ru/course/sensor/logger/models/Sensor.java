@@ -1,7 +1,7 @@
 package ru.course.sensor.logger.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class Sensor {
     private int id;
 
     @Size(min = 3, max = 30)
-    @NotNull
+    @NotEmpty
     @Column(name = "name")
     private String name;
 

@@ -1,22 +1,22 @@
 package ru.course.sensor.logger.dto;
 
-import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.validator.constraints.Range;
 
-import java.time.LocalDateTime;
-
 @Getter
 @Setter
 @NoArgsConstructor
 public class MeasurementDTO {
+    @NotNull
     @Range(min = -100, max = 100)
-    private int value;
+    private Double value;
 
-    private boolean raining;
+    @NotNull
+    private SensorDTO sensor;
 
-    @NotEmpty
-    private LocalDateTime createdAt;
+    @NotNull
+    private Boolean raining;
 }
