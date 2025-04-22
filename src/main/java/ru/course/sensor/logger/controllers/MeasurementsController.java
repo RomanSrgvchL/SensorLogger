@@ -11,6 +11,7 @@ import ru.course.sensor.logger.models.Measurement;
 import ru.course.sensor.logger.models.Sensor;
 import ru.course.sensor.logger.services.MeasurementsService;
 import ru.course.sensor.logger.services.SensorsService;
+import ru.course.sensor.logger.util.ErrorsUtil;
 import ru.course.sensor.logger.util.MeasurementErrorResponse;
 import ru.course.sensor.logger.util.MeasurementsNotCreatedException;
 
@@ -43,13 +44,7 @@ public class MeasurementsController {
                                                      BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             StringBuilder errors = new StringBuilder();
-            bindingResult.getFieldErrors().forEach(
-                    error -> errors
-                            .append(error.getField())
-                            .append(": ")
-                            .append(error.getDefaultMessage())
-                            .append("; ")
-            );
+            ErrorsUtil.recordErrors(errors, bindingResult);
             throw new MeasurementsNotCreatedException(errors.toString());
         }
         Measurement measurement = convertToMeasurement(measurementDTO);

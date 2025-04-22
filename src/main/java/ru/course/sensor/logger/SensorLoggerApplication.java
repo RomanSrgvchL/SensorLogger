@@ -55,8 +55,8 @@ public class SensorLoggerApplication {
         MeasurementDTO measurementDTO;
         HttpEntity<MeasurementDTO> request;
 
-        for (int i = 0; i < 100; i++) {
-            double value = random.nextDouble(-100, 100);
+        for (int i = 0; i < 1000; i++) {
+            double value = random.nextDouble(-30, 45);
             measurementDTO = new MeasurementDTO(value, sensorDTO, System.currentTimeMillis() % 2 == 0);
             request = new HttpEntity<>(measurementDTO);
             restTemplate.postForObject(url, request, Void.class);

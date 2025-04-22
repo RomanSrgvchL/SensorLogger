@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import ru.course.sensor.logger.dto.SensorDTO;
 import ru.course.sensor.logger.models.Sensor;
 import ru.course.sensor.logger.services.SensorsService;
+import ru.course.sensor.logger.util.ErrorsUtil;
 import ru.course.sensor.logger.util.SensorErrorResponse;
 import ru.course.sensor.logger.util.SensorNotCreatedException;
 import ru.course.sensor.logger.util.SensorValidator;
@@ -31,13 +32,7 @@ public class SensorController {
         sensorValidator.validate(sensor, bindingResult);
         if (bindingResult.hasErrors()) {
             StringBuilder errors = new StringBuilder();
-            bindingResult.getFieldErrors().forEach(
-                    error -> errors
-                            .append(error.getField())
-                            .append(": ")
-                            .append(error.getDefaultMessage())
-                            .append("; ")
-            );
+            ErrorsUtil.recordErrors(errors, bindingResult);
             throw new SensorNotCreatedException(errors.toString());
         }
         sensorsService.save(convertToSensor(sensor));
