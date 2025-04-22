@@ -1,14 +1,14 @@
 package ru.course.sensor.logger.dto;
 
 import jakarta.validation.constraints.NotNull;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.Range;
 
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class MeasurementDTO {
     @NotNull
     @Range(min = -100, max = 100)
